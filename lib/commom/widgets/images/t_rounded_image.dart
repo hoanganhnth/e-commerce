@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../utils/constants/colors.dart';
 
 import '../../../utils/constants/sizes.dart';
 
@@ -12,7 +11,7 @@ class TRoundedImage extends StatelessWidget {
     this.height,
     this.applyImageRadius = true,
     this.border,
-    this.backgroundColor = TColors.light,
+    this.backgroundColor,
     this.fit,
     this.padding,
     this.isNetworkImage = false,
@@ -24,7 +23,7 @@ class TRoundedImage extends StatelessWidget {
   final double? width, height;
   final bool applyImageRadius;
   final BoxBorder? border;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final BoxFit? fit;
   final EdgeInsetsGeometry? padding;
   final bool isNetworkImage;

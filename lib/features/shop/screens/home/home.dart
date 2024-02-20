@@ -24,21 +24,21 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TPrimaryHeaderContainer(
+            const TPrimaryHeaderContainer(
                 child: Column(
-              children: [
-                const THomeAppBar(),
-                const SizedBox(
+                children: [
+                THomeAppBar(),
+                SizedBox(
                   height: TSizes.spaceBtwSections,
                 ),
-                const TSearchContainer(
+                TSearchContainer(
                   text: "Search in store",
                 ),
-                const SizedBox(
+                SizedBox(
                   height: TSizes.spaceBtwSections,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: TSizes.defaultSpace),
+                  padding: EdgeInsets.only(left: TSizes.defaultSpace),
                   child: Column(
                     children: [
                       TSectionHeading(
@@ -46,10 +46,10 @@ class HomeScreen extends StatelessWidget {
                         showActionButton: false,
                         textColor: Colors.white,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: TSizes.spaceBtwItems,
                       ),
-                      const THomeCategory(),
+                      THomeCategory(),
                     ],
                   ),
                 ),
@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
             )),
             // body
             Padding(
-              padding: EdgeInsets.all(TSizes.defaultSpace),
+              padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
                   // slider

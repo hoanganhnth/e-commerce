@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/utils/constants/sizes.dart';
+import 'package:t_store/utils/device/device_utility.dart';
 
-class TAppBar extends StatelessWidget {
+class TAppBar extends StatelessWidget implements PreferredSizeWidget {
   const TAppBar(
       {Key? key,
       this.title,
@@ -38,4 +39,8 @@ class TAppBar extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize => Size.fromHeight(TDeviceUtils.getAppBarHeight());
 }
