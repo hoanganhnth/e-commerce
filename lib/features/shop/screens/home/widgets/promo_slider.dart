@@ -8,30 +8,22 @@ import 'package:t_store/features/shop/controllers/home_controller.dart';
 import '../../../../../commom/widgets/custom_shapes/containers/circular_container.dart';
 import '../../../../../commom/widgets/images/t_rounded_image.dart';
 import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
 
 class TPromoSlider extends StatelessWidget {
   const TPromoSlider({
     super.key,
+    required this.banners,
   });
+
+  final List<String> banners;
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(HomeController());
     return Column(children: [
       CarouselSlider(
-          items: const [
-            TRoundedImage(
-              imageUrl: TImages.promoBanner1,
-            ),
-            TRoundedImage(
-              imageUrl: TImages.promoBanner2,
-            ),
-            TRoundedImage(
-              imageUrl: TImages.promoBanner3,
-            ),
-          ],
+          items: banners.map((url) => TRoundedImage(imageUrl: url)).toList(),
           options: CarouselOptions(
             viewportFraction: 1,
             onPageChanged: (index, reason) =>

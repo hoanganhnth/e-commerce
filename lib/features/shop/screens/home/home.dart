@@ -1,24 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:t_store/commom/styles/shadows.dart';
-import 'package:t_store/commom/widgets/custom_shapes/containers/circular_container.dart';
-import 'package:t_store/commom/widgets/images/t_rounded_image.dart';
 
 import 'package:t_store/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_category.dart';
 import 'package:t_store/features/shop/screens/home/widgets/promo_slider.dart';
-import 'package:t_store/utils/constants/colors.dart';
+
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
-import 'package:t_store/utils/constants/text_strings.dart';
-import 'package:t_store/utils/device/device_utility.dart';
-import 'package:t_store/utils/helpers/helper_functions.dart';
+
 import '../../../../commom/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../commom/widgets/custom_shapes/containers/search_container.dart';
-import '../../../../commom/widgets/icons/t_circular_icon.dart';
-import '../../../../commom/widgets/image_text_widgets/vertical_image_text.dart';
+import '../../../../commom/widgets/layout/grid_layout.dart';
 import '../../../../commom/widgets/products/product_cards/product_card_vertical.dart';
 import '../../../../commom/widgets/texts/section_heading.dart';
 
@@ -68,22 +61,12 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   // slider
-                  TPromoSlider(),
+                  const TPromoSlider(banners: [TImages.promoBanner1,TImages.promoBanner2,TImages.promoBanner3],),
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
-                  GridView.builder(
-                    itemCount: 2,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: TSizes.gridViewSpacing,
-                        mainAxisSpacing: TSizes.gridViewSpacing),
-                    itemBuilder: (BuildContext context, int index) {
-                      return TProductCardVertical();
-                    },
-                  )
+
+                  TGridLayout(itemCount: 4, itemBuilder: (p0, p1) => const TProductCardVertical(),)
                 ],
               ),
             ),
