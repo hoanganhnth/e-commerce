@@ -6,6 +6,7 @@ import 'package:t_store/commom/widgets/appbar/appbar.dart';
 import 'package:t_store/commom/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:t_store/commom/widgets/list_tiles/setting_menu_tile.dart';
 import 'package:t_store/commom/widgets/texts/section_heading.dart';
+import 'package:t_store/features/personalization/screens/address/address.dart';
 import 'package:t_store/features/personalization/screens/profile/profile.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -53,10 +54,10 @@ class SettingScreen extends StatelessWidget {
                 const SizedBox(
                   height: TSizes.spaceBtwItems,
                 ),
-                const TSettingProfileTile(
+                TSettingProfileTile(
                     title: 'My Addresses',
                     subTitle: 'Set shopping delivery address',
-                    icon: Iconsax.safe_home),
+                    icon: Iconsax.safe_home, onTap: () => Get.to(() => const UserAddressScreen()),),
                 const TSettingProfileTile(
                     title: 'My Cart',
                     subTitle: 'Add, remove products and move to checkout',
