@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
 import '../../../../../commom/widgets/appbar/appbar.dart';
 import '../../../../../commom/widgets/products/cart/cart_menu_icon.dart';
 import '../../../../../utils/constants/colors.dart';
@@ -35,7 +36,7 @@ class THomeAppBar extends StatelessWidget {
         ],
       ),
       action:  [
-        TCartCounterIcon(onPressed: (){}, iconColor: TColors.white,)
+        TCartCounterIcon(iconColor: TColors.white,)
       ],
     );
   }

@@ -10,14 +10,14 @@ class TCircleIcon extends StatelessWidget {
     super.key,
     required this.icon,
     this.color,
-    this.backgroundColor, this.onPressed, this.width, this.height,
+    this.backgroundColor, this.onPressed, this.width, this.height, this.size,
   });
 
   final IconData icon;
   final Color? color;
   final Color? backgroundColor;
   final VoidCallback? onPressed;
-  final double? width, height;
+  final double? width, height, size;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class TCircleIcon extends StatelessWidget {
             : TColors.white.withOpacity(0.9),
       ),
       child: IconButton(
-        icon: Icon(icon, color: color,),
+        icon: Icon(icon, color: color,size: size,),
         onPressed: onPressed,
       ),
     );

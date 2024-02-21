@@ -30,7 +30,6 @@ class StoreScreen extends StatelessWidget {
           ),
           action: [
             TCartCounterIcon(
-              onPressed: () {},
               iconColor: TColors.black,
             )
           ],
