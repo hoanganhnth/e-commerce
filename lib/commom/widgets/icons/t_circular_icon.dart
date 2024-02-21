@@ -10,17 +10,20 @@ class TCircleIcon extends StatelessWidget {
     super.key,
     required this.icon,
     this.color,
-    this.backgroundColor, this.onPressed,
+    this.backgroundColor, this.onPressed, this.width, this.height,
   });
 
   final IconData icon;
   final Color? color;
   final Color? backgroundColor;
   final VoidCallback? onPressed;
+  final double? width, height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
+      height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
         color: backgroundColor != null

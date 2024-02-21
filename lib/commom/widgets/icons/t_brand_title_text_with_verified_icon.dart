@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/commom/widgets/texts/t_brand_title_text.dart';
 import 'package:t_store/utils/constants/enums.dart';
@@ -27,14 +28,17 @@ class TBrandTitleWithVerifiedIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         // brand
-        TBrandTitleText(
-          title: title,
-          color: textColor,
-          maxLines: maxLines,
-          textAlign: textAlign,
-          brandTextSize: brandTextSize,
+        Flexible(
+          child: TBrandTitleText(
+            title: title,
+            color: textColor,
+            maxLines: maxLines,
+            textAlign: textAlign,
+            brandTextSize: brandTextSize,
+          ),
         ),
         const SizedBox(
           width: TSizes.xs,
