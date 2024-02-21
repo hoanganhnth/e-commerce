@@ -26,33 +26,36 @@ class HomeScreen extends StatelessWidget {
           children: [
             const TPrimaryHeaderContainer(
                 child: Column(
-                children: [
-                THomeAppBar(),
+                  children: [
+                    THomeAppBar(),
+                    SizedBox(
+                      height: TSizes.spaceBtwSections,
+                    ),
+                    TSearchContainer(
+                      text: "Search in store",
+                    ),
+                    SizedBox(
+                      height: TSizes.spaceBtwSections,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: TSizes.defaultSpace),
+                      child: Column(
+                        children: [
+                          TSectionHeading(
+                            title: 'Popular Categories',
+                            showActionButton: false,
+                            textColor: Colors.white,
+                          ),
+                          SizedBox(
+                            height: TSizes.spaceBtwItems,
+                          ),
+                          THomeCategory(),
+                        ],
+                      ),
+                    ),
                 SizedBox(
                   height: TSizes.spaceBtwSections,
-                ),
-                TSearchContainer(
-                  text: "Search in store",
-                ),
-                SizedBox(
-                  height: TSizes.spaceBtwSections,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: TSizes.defaultSpace),
-                  child: Column(
-                    children: [
-                      TSectionHeading(
-                        title: 'Popular Categories',
-                        showActionButton: false,
-                        textColor: Colors.white,
-                      ),
-                      SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-                      THomeCategory(),
-                    ],
-                  ),
-                ),
+                )
               ],
             )),
             // body
@@ -61,12 +64,21 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   // slider
-                  const TPromoSlider(banners: [TImages.promoBanner1,TImages.promoBanner2,TImages.promoBanner3],),
+                  const TPromoSlider(
+                    banners: [
+                      TImages.promoBanner1,
+                      TImages.promoBanner2,
+                      TImages.promoBanner3
+                    ],
+                  ),
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
 
-                  TGridLayout(itemCount: 4, itemBuilder: (p0, p1) => const TProductCardVertical(),)
+                  TGridLayout(
+                    itemCount: 4,
+                    itemBuilder: (p0, p1) => const TProductCardVertical(),
+                  )
                 ],
               ),
             ),

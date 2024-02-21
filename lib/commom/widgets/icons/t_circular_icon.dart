@@ -10,12 +10,13 @@ class TCircleIcon extends StatelessWidget {
     super.key,
     required this.icon,
     this.color,
-    this.backgroundColor,
+    this.backgroundColor, this.onPressed,
   });
 
   final IconData icon;
   final Color? color;
   final Color? backgroundColor;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class TCircleIcon extends StatelessWidget {
       ),
       child: IconButton(
         icon: Icon(icon, color: color,),
-        onPressed: () {},
+        onPressed: onPressed,
       ),
     );
   }

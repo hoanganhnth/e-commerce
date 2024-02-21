@@ -81,7 +81,7 @@ class StoreScreen extends StatelessWidget {
                   ),
                 ),
                 // Tabs
-                bottom: TTaBar(
+                bottom: const TTaBar(
                   tabs: [
                     Tab(
                       child: Text('Sport'),
@@ -103,7 +103,7 @@ class StoreScreen extends StatelessWidget {
               )
             ];
           },
-          body: TabBarView(
+          body: const TabBarView(
             children: [
               TCategoryTab(),
               TCategoryTab(),
