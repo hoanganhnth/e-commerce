@@ -8,6 +8,8 @@ import 'package:t_store/commom/widgets/list_tiles/setting_menu_tile.dart';
 import 'package:t_store/commom/widgets/texts/section_heading.dart';
 import 'package:t_store/features/personalization/screens/address/address.dart';
 import 'package:t_store/features/personalization/screens/profile/profile.dart';
+import 'package:t_store/features/shop/screens/cart/cart.dart';
+import 'package:t_store/features/shop/screens/order/order.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
@@ -58,14 +60,16 @@ class SettingScreen extends StatelessWidget {
                     title: 'My Addresses',
                     subTitle: 'Set shopping delivery address',
                     icon: Iconsax.safe_home, onTap: () => Get.to(() => const UserAddressScreen()),),
-                const TSettingProfileTile(
+                TSettingProfileTile(
                     title: 'My Cart',
                     subTitle: 'Add, remove products and move to checkout',
-                    icon: Iconsax.shopping_cart),
-                const TSettingProfileTile(
+                    icon: Iconsax.shopping_cart,
+                    onTap: () => Get.to(() => const CartScreen())),
+                TSettingProfileTile(
                     title: 'My Orders',
                     subTitle: 'In-progress and Completed Orders',
-                    icon: Iconsax.bag_tick),
+                    icon: Iconsax.bag_tick,
+                    onTap: () => Get.to(() => const OrderScreen())),
                 const TSettingProfileTile(
                     title: 'Bank Account',
                     subTitle: 'Withdraw balance to registered bank account',
