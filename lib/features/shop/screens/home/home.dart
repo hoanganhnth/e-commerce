@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:t_store/features/shop/screens/all_products/all_products.dart';
 
 import 'package:t_store/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_category.dart';
@@ -58,6 +60,7 @@ class HomeScreen extends StatelessWidget {
                 )
               ],
             )),
+
             // body
             Padding(
               padding: const EdgeInsets.all(TSizes.defaultSpace),
@@ -75,6 +78,13 @@ class HomeScreen extends StatelessWidget {
                     height: TSizes.spaceBtwSections,
                   ),
 
+                  TSectionHeading(
+                    title: 'Popular Products',
+                    onPressed: () => Get.to(() => const TAllProducts()),
+                  ),
+                  const SizedBox(
+                    height: TSizes.spaceBtwItems,
+                  ),
                   TGridLayout(
                     itemCount: 4,
                     itemBuilder: (p0, p1) => const TProductCardVertical(),

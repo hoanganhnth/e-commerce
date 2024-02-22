@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:t_store/commom/widgets/appbar/appbar.dart';
 import 'package:t_store/commom/widgets/appbar/tabbar.dart';
 import 'package:t_store/commom/widgets/custom_shapes/containers/search_container.dart';
@@ -8,6 +9,7 @@ import 'package:t_store/commom/widgets/layout/grid_layout.dart';
 import 'package:t_store/commom/widgets/products/cart/cart_menu_icon.dart';
 import 'package:t_store/commom/widgets/texts/section_heading.dart';
 import 'package:t_store/commom/widgets/brands/brand_card.dart';
+import 'package:t_store/features/shop/screens/brand/all_brands.dart';
 import 'package:t_store/features/shop/screens/store/widgets/category_tab.dart';
 
 import 'package:t_store/utils/constants/sizes.dart';
@@ -62,7 +64,7 @@ class StoreScreen extends StatelessWidget {
                       const SizedBox(height: TSizes.spaceBtwItems),
                       TSectionHeading(
                         title: 'Featured Brands',
-                        onPressed: () {},
+                        onPressed: () => Get.to(() => const TAllBrandScreen()),
                       ),
                       const SizedBox(
                         height: TSizes.spaceBtwItems / 1.5,

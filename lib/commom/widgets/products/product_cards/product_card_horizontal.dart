@@ -21,7 +21,7 @@ class TProductCardHorizontal extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return Container(
-      // width: 280,
+      width: 280,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(TSizes.productImageRadius),
         color: dark ? TColors.darkGrey : TColors.softGrey,
