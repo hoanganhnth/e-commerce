@@ -22,7 +22,7 @@ class TSubCategoriesScreen extends StatelessWidget {
           padding: EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
-              TRoundedImage(
+              const TRoundedImage(
                 width: double.infinity, imageUrl: TImages.promoBanner3,),
               const SizedBox(height: TSizes.spaceBtwItems,),
 

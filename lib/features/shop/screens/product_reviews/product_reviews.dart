@@ -33,11 +33,11 @@ class TProductReviewsScreen extends StatelessWidget {
               const SizedBox(height: TSizes.spaceBtwItems),
 
               // Overall Product Rating
-              TOverallProductRating(),
-              TRatingBarIndicator(rating: 3.5,),
+              const TOverallProductRating(),
+              const TRatingBarIndicator(rating: 3.5,),
               Text('12.611', style: Theme.of(context).textTheme.bodySmall,),
               const SizedBox(height: TSizes.spaceBtwSections,),
-              TUserReviewCard(),
+              const TUserReviewCard(),
               TUserReviewCard(),
             ],
           ),

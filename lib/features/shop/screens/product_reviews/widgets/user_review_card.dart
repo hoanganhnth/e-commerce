@@ -37,7 +37,7 @@ class TUserReviewCard extends StatelessWidget {
         // Review
         Row(
           children: [
-            TRatingBarIndicator(
+            const TRatingBarIndicator(
               rating: 3.5,
               small: true,
             ),
@@ -55,17 +55,17 @@ class TUserReviewCard extends StatelessWidget {
           height: TSizes.spaceBtwItems,
         ),
         // Read more
-        ReadMoreText(
+        const ReadMoreText(
           'Love the shirt! It is incredibly comfy and fits just right. The attention to detail is impressive, and the color options are great. Highly recommend',
           trimLength: 1,
           trimExpandedText: ' show less',
           trimCollapsedText: ' show more',
           trimMode: TrimMode.Line,
-          moreStyle: const TextStyle(
+          moreStyle: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
               color: TColors.primary),
-          lessStyle: const TextStyle(
+          lessStyle: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
               color: TColors.primary),

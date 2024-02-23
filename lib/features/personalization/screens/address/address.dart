@@ -26,7 +26,7 @@ class UserAddressScreen extends StatelessWidget {
           color: TColors.white,
         ),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
