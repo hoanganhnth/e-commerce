@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_store/features/authentication/controllers/forget_password/forget_password_controller.dart';
 import 'package:t_store/features/authentication/screens/login/login.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
@@ -9,8 +10,9 @@ import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/helpers/helper_functions.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
-  const ResetPasswordScreen({Key? key}) : super(key: key);
+  const ResetPasswordScreen({Key? key, required this.email}) : super(key: key);
 
+  final String email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +32,7 @@ class ResetPasswordScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineMedium,
                   textAlign: TextAlign.center),
               const SizedBox(height: TSizes.spaceBtwItems),
-              Text("support@gmail.com",
+              Text(email,
                   style: Theme.of(context).textTheme.labelLarge,
                   textAlign: TextAlign.center),
               const SizedBox(height: TSizes.spaceBtwItems),
@@ -42,7 +44,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.to(() => const LoginScreen());
+                    Get.offAll(() => const LoginScreen());
                   },
                   child: const Text(TTexts.done),
                 ),
@@ -51,7 +53,7 @@ class ResetPasswordScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () => ForgetPasswordController.instance.resendPasswordResetEmail(),
                   child: const Text(TTexts.resendEmail),
                 ),
               ),

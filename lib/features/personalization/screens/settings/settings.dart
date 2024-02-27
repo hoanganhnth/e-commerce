@@ -6,6 +6,7 @@ import 'package:t_store/commom/widgets/appbar/appbar.dart';
 import 'package:t_store/commom/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:t_store/commom/widgets/list_tiles/setting_menu_tile.dart';
 import 'package:t_store/commom/widgets/texts/section_heading.dart';
+import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:t_store/features/personalization/screens/address/address.dart';
 import 'package:t_store/features/personalization/screens/profile/profile.dart';
 import 'package:t_store/features/shop/screens/cart/cart.dart';
@@ -124,7 +125,7 @@ class SettingScreen extends StatelessWidget {
                 // Logout
 
                 SizedBox(width: double.infinity,
-                child: OutlinedButton(onPressed: () {  }, child: const Text('Logout'),),)
+                child: OutlinedButton(onPressed: () => AuthenticationRepository.instance.logout(), child: const Text('Logout'),),)
 
               ],
             ),

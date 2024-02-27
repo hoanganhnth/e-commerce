@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:t_store/utils/formatters/formatter.dart';
 
 class UserModel {
@@ -49,25 +50,26 @@ class UserModel {
     return {
       "FirstName": firstName,
       "LastName": lastName,
-      "Username": userName,
+      "UserName": userName,
       "Email": email,
       "PhoneNumber": phoneNumber,
       "ProfilePicture": profilePicture,
     };
   }
-  //
-  // factory UserModel.fromSnapshot(
-  //     DocumentSnapshot<Map<String, dynamic>> document) {
-  //   if (document.data() != null) {
-  //     final data = document.data();
-  //     return UserModel(id: document.id,
-  //         firstName: data['FirstName'] ?? '',
-  //         lastName: data['FirstName'] ?? '',
-  //         userName:  data['FirstName'] ?? '',
-  //         data['FirstName'] ?? '',
-  //         email: data['FirstName'] ?? '',
-  //         phoneNumber: data['FirstName'] ?? '',
-  //         profilePicture: data['FirstName'] ?? '')
-  //   }
-  // }
+
+  factory UserModel.fromSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> document) {
+    if (document.data() != null) {
+      final data = document.data()!;
+      return UserModel(id: document.id,
+          firstName: data['FirstName'] ?? '',
+          lastName: data['LastName'] ?? '',
+          userName:  data['UserName'] ?? '',
+          email: data['Email'] ?? '',
+          phoneNumber: data['PhoneNumber'] ?? '',
+          profilePicture: data['ProfilePicture'] ?? '');
+    } else {
+      return UserModel.empty();
+    }
+  }
 }

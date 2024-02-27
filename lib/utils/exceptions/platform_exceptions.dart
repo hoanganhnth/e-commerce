@@ -37,6 +37,7 @@ class TPlatformException implements Exception {
     // Add more cases as needed...
       default:
         return 'An unexpected platform error occurred. Please try again.';
+
     }
   }
 }

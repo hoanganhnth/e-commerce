@@ -12,7 +12,7 @@ class SignupController extends GetxController {
   static SignupController get instance => Get.find();
 
   final hidePassword = true.obs;
-  final privacyPolicy = true.obs;
+  final privacyPolicy = false.obs;
   final email = TextEditingController();
   final lastName = TextEditingController();
   final userName = TextEditingController();
@@ -21,12 +21,13 @@ class SignupController extends GetxController {
   final phoneNumber = TextEditingController();
 
   GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
+  final userRepository = Get.put(UserRepository());
 
   Future<void> signup() async {
     try {
       // TFullScreenLoader.openLoadingDialog('We are progressing your information...', TImages.staticSuccessIllustration);
       if (!signupFormKey.currentState!.validate()) {
-        TLoaders.warningSnackBar(title: 'Oh Snap!');
+        TLoaders.warningSnackBar(title: 'Oh Snap!', message: 'Please enter the field');
         return ;
       }
       if (!privacyPolicy.value) {
@@ -48,10 +49,10 @@ class SignupController extends GetxController {
           phoneNumber: phoneNumber.text.trim(),
           profilePicture: '');
 
-      final userRepository = Get.put(UserRepository());
+
       userRepository.saveUserRecord(newUser);
       TLoaders.successSnackBar(title: 'Success!', message: 'Your account has been created! Verify email to continue');
-      Get.to(() => const VerifyEmailScreen());
+      Get.to(() => VerifyEmailScreen(email: email.text,));
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     } finally {}
