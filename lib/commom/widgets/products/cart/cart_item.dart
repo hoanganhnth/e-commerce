@@ -24,8 +24,8 @@ class TCartItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              TBrandTitleWithVerifiedIcon(title: 'Nike'),
-              TProductTileText(title: 'Black Sports shoes', maxLine: 1,),
+              const TBrandTitleWithVerifiedIcon(title: 'Nike'),
+              const TProductTileText(title: 'Black Sports shoes', maxLine: 1,),
               Text.rich(
                   TextSpan(
                       children: [

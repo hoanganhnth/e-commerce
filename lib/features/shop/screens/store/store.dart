@@ -22,6 +22,7 @@ class StoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dark  = THelperFunctions.isDarkMode(context);
     return DefaultTabController(
       length: 5,
       child: Scaffold(
@@ -32,7 +33,7 @@ class StoreScreen extends StatelessWidget {
           ),
           action: [
             TCartCounterIcon(
-              iconColor: TColors.black,
+              iconColor: dark ? TColors.white : TColors.black,
             )
           ],
         ),

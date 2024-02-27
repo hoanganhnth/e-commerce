@@ -1,11 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/commom/widgets/appbar/appbar.dart';
 import 'package:t_store/commom/widgets/images/t_circular_image.dart';
+import 'package:t_store/commom/widgets/loaders/shimmer.dart';
 import 'package:t_store/commom/widgets/texts/section_heading.dart';
+import 'package:t_store/features/personalization/controllers/user_controller.dart';
+import 'package:t_store/features/personalization/screens/profile/widgets/change_name.dart';
+import 'package:t_store/features/personalization/screens/profile/widgets/change_phone_number.dart';
 import 'package:t_store/features/personalization/screens/profile/widgets/profile_menu.dart';
+import 'package:t_store/features/personalization/screens/profile/widgets/re_authenticate_user_login_form.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
@@ -14,6 +20,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Scaffold(
       appBar: TAppBar(
         showBackArrow: true,
@@ -33,14 +40,28 @@ class ProfileScreen extends StatelessWidget {
                 child: Center(
                   child: Column(
                     children: [
-                      const TCircularImage(
-                        image: TImages.user,
-                        width: 80,
-                        height: 80,
-                        padding: 0,
-                      ),
+                      Obx(() {
+                        final networkImage =
+                            controller.user.value.profilePicture;
+                        final image = networkImage.isNotEmpty
+                            ? networkImage
+                            : TImages.user;
+                        return controller.imageUploading.value
+                            ? const TShimmerEffect(
+                                width: 80,
+                                height: 80,
+                                radius: 80,
+                              )
+                            : TCircularImage(
+                                image: image,
+                                isNetworkImage: networkImage.isNotEmpty,
+                                width: 80,
+                                height: 80,
+                                padding: 0,
+                              );
+                      }),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () => controller.uploadUserProfilePicture(),
                         child: const Text('Change your profile'),
                       )
                     ],
@@ -56,22 +77,27 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
-              const Column(
+              Column(
                 children: [
-                  TSectionHeading(
+                  const TSectionHeading(
                     title: 'Profile Information',
                     showActionButton: false,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: TSizes.spaceBtwItems,
                   ),
-                  TProfileMenu(
-                    title: 'Name',
-                    value: 'Hoang Anh',
+                  Obx(
+                    () => TProfileMenu(
+                      title: 'Name',
+                      value: controller.user.value.fullName,
+                      onPressed: () => Get.to(() => const ChangeNameScreen()),
+                    ),
                   ),
-                  TProfileMenu(
-                    title: 'Username',
-                    value: 'anh_nth',
+                  Obx(
+                    () => TProfileMenu(
+                      title: 'Username',
+                      value: controller.user.value.userName,
+                    ),
                   ),
                 ],
               ),
@@ -84,33 +110,37 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
-              const Column(
+              Column(
                 children: [
-                  TSectionHeading(
+                  const TSectionHeading(
                     title: 'Personal Information',
                     showActionButton: false,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: TSizes.spaceBtwItems,
                   ),
                   TProfileMenu(
                     title: 'UserId',
-                    value: '1832003',
+                    value: controller.user.value.id,
                     icon: Iconsax.copy,
                   ),
                   TProfileMenu(
                     title: 'Email',
-                    value: 'hoanganhnth2k3@gmail.com',
+                    value: controller.user.value.email,
                   ),
-                  TProfileMenu(
-                    title: 'Phone Number',
-                    value: '0357660780',
+                  Obx(
+                    () => TProfileMenu(
+                      title: 'Phone Number',
+                      value: controller.user.value.phoneNumber,
+                      onPressed: () =>
+                          Get.to(() => const ChangePhoneNumberScreen()),
+                    ),
                   ),
-                  TProfileMenu(
+                  const TProfileMenu(
                     title: 'Gender',
                     value: 'Male',
                   ),
-                  TProfileMenu(
+                  const TProfileMenu(
                     title: 'Date of birth',
                     value: '18 Mar, 2003',
                   ),
@@ -122,9 +152,12 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
-              TextButton(onPressed: () {}, child: const Text(
-                'Close Account', style: TextStyle(color: Colors.red),
-              ))
+              TextButton(
+                  onPressed: () => controller.deleteAccountWarningPopup(),
+                  child: const Text(
+                    'Close Account',
+                    style: TextStyle(color: Colors.red),
+                  ))
             ],
           ),
         ),
