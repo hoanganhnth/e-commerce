@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:t_store/commom/widgets/shimmers/vertical_product_shimmer.dart';
 import 'package:t_store/data/repositories/user/user_repository.dart';
 import 'package:t_store/features/personalization/controllers/user_controller.dart';
-import 'package:t_store/features/shop/controllers/product_controller.dart';
+import 'package:t_store/features/shop/controllers/product/product_controller.dart';
 import 'package:t_store/features/shop/screens/all_products/all_products.dart';
 
 import 'package:t_store/features/shop/screens/home/widgets/home_appbar.dart';

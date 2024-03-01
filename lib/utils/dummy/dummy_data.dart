@@ -116,7 +116,7 @@ class TDummyData {
         categoryId: '16',
         productAttributes: [
           ProductAttributeModel(name: 'Color', values: ['Green', 'Blue', 'Red']),
-          ProductAttributeModel(name: 'Size', values: ['EU32', 'EU34']),
+          ProductAttributeModel(name: 'Size', values: ['EU 32', 'EU 34']),
         ],
         productType: 'ProductType.single'),
 
@@ -134,7 +134,7 @@ class TDummyData {
         sku: 'ABR4568',
         categoryId: '16',
         productAttributes: [
-          ProductAttributeModel(name: 'Color', values: ['Green','Yellow' 'Green', 'Blue']),
+          ProductAttributeModel(name: 'Color', values: ['Green','Black','Red', 'Blue']),
           ProductAttributeModel(name: 'Size', values: ['EU 30', 'EU 32', 'EU 34']),
         ],
         productVariations: [
@@ -145,7 +145,7 @@ class TDummyData {
               salePrice: 122.6,
               image: TImages.productImage1,
               description: 'This is a Product description for Green Nike sports shoes',
-              attributeValues: {'Color': 'Green', 'Size': 'EU 34'}),
+              attributeValues: {'Color': 'Green', 'Size': 'EU 32'}),
           ProductVariationModel(
               id: '2',
               stock: 15,
@@ -194,7 +194,7 @@ class TDummyData {
         sku: 'ABR4568',
         categoryId: '8',
         productAttributes: [
-          ProductAttributeModel(name: 'Color', values: ['Orange','Black' 'Brown']),
+          ProductAttributeModel(name: 'Color', values: ['Orange','Black' ,'Brown']),
           ProductAttributeModel(name: 'Size', values: ['EU 30', 'EU 32', 'EU 34']),
         ],
         productVariations: [

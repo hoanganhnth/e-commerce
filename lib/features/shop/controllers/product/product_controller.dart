@@ -3,8 +3,8 @@ import 'package:t_store/commom/widgets/loaders/loaders.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/utils/dummy/dummy_data.dart';
 
-import '../../../data/repositories/products/product_repository.dart';
-import '../../../utils/constants/enums.dart';
+import '../../../../data/repositories/products/product_repository.dart';
+import '../../../../utils/constants/enums.dart';
 
 class ProductController extends GetxController {
   static ProductController get instance => Get.find();
