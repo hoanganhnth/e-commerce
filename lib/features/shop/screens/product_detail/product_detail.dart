@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/features/shop/screens/product_detail/widgets/bottom_add_to_cart_widget.dart';
 import 'package:t_store/features/shop/screens/product_detail/widgets/product_attributes.dart';
 import 'package:t_store/features/shop/screens/product_detail/widgets/product_detail_image_slider.dart';
@@ -14,8 +15,9 @@ import '../../../../commom/widgets/texts/section_heading.dart';
 import 'package:readmore/readmore.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({Key? key}) : super(key: key);
+  const ProductDetailScreen({Key? key, required this.product}) : super(key: key);
 
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

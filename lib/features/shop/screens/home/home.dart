@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:t_store/commom/widgets/shimmers/vertical_product_shimmer.dart';
 import 'package:t_store/data/repositories/user/user_repository.dart';
 import 'package:t_store/features/personalization/controllers/user_controller.dart';
+import 'package:t_store/features/shop/controllers/product_controller.dart';
 import 'package:t_store/features/shop/screens/all_products/all_products.dart';
 
 import 'package:t_store/features/shop/screens/home/widgets/home_appbar.dart';
@@ -24,6 +26,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProductController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -70,11 +73,6 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   // slider
                   const TPromoSlider(
-                    banners: [
-                      TImages.promoBanner1,
-                      TImages.promoBanner2,
-                      TImages.promoBanner3
-                    ],
                   ),
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
@@ -87,9 +85,20 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(
                     height: TSizes.spaceBtwItems,
                   ),
-                  TGridLayout(
-                    itemCount: 4,
-                    itemBuilder: (p0, p1) => const TProductCardVertical(),
+                  
+                  
+                  Obx(() {
+                    if (controller.isLoading.value) return const TVerticalProductShimmer();
+
+                    if (controller.featuredProducts.isEmpty) {
+                      return Center(child: Text('No Data Found', style: Theme.of(context).textTheme.bodyMedium,),);
+                    }
+                    return  TGridLayout(
+                      itemCount: controller.featuredProducts.length,
+                      itemBuilder: (_, index) => TProductCardVertical(productModel: controller.featuredProducts[index]),
+                    );
+                  }
+
                   )
                 ],
               ),

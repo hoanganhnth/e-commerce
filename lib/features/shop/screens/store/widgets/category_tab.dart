@@ -17,7 +17,7 @@ class TCategoryTab extends StatelessWidget {
     return ListView(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      children: [
+      children: const [
         Padding(
           padding: EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
@@ -30,8 +30,8 @@ class TCategoryTab extends StatelessWidget {
                 ],
               ),
               TSectionHeading(title: 'You might like'),
-              const SizedBox(height: TSizes.spaceBtwItems,),
-              TGridLayout(itemCount: 4, itemBuilder: (BuildContext , int ) => const TProductCardVertical(), )
+              SizedBox(height: TSizes.spaceBtwItems,),
+              // TGridLayout(itemCount: 4, itemBuilder: (BuildContext , int ) => const TProductCardVertical(), )
             ],
           ),
         ),
