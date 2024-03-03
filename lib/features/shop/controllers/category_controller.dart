@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 import 'package:t_store/commom/widgets/loaders/loaders.dart';
 import 'package:t_store/data/repositories/categories/category_repository.dart';
+import 'package:t_store/data/repositories/products/product_repository.dart';
 import 'package:t_store/utils/dummy/dummy_data.dart';
 
 import '../models/category_model.dart';
+import '../models/product_model.dart';
 
 class CategoryController extends GetxController {
   static CategoryController get instance  => Get.find();
@@ -33,4 +35,15 @@ class CategoryController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  Future<List<ProductModel>> getCategoryProducts({required String categoryId, int limit = 4}) async{
+    try {
+      final products = await ProductRepository.instance.getProductsForCategory(categoryId:categoryId, limit: limit);
+      return products;
+    } catch(e){
+      TLoaders.warningSnackBar(title: 'Oh Snap!', message: e.toString());
+      return [];
+    }
+  }
+
 }

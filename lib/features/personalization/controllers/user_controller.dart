@@ -13,6 +13,9 @@ import 'package:t_store/features/authentication/screens/login/login.dart';
 import 'package:t_store/features/personalization/screens/profile/widgets/re_authenticate_user_login_form.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
+import '../../../utils/constants/image_strings.dart';
+import '../../../utils/popups/full_screen_loader.dart';
+
 class UserController extends GetxController {
   static UserController get instance => Get.find();
 
@@ -39,7 +42,6 @@ class UserController extends GetxController {
       this.user(user);
       this.user.refresh();
       profileLoading.value = true;
-      print(this.user.value.profilePicture);
 
     } catch (e) {
       user(UserModel.empty());
@@ -99,6 +101,7 @@ class UserController extends GetxController {
 
   deleteUserAccount()async {
     try {
+      TFullScreenLoader.openLoadingDialog('We are deleting your account...', TImages.loadingAnimation);
       final auth = AuthenticationRepository.instance;
       final provider = auth.authUser!.providerData.map((e) => e.providerId).first;
       if (provider.isNotEmpty) {
@@ -113,6 +116,8 @@ class UserController extends GetxController {
       }
     } catch (e) {
       TLoaders.warningSnackBar(title: 'Oh Snap!', message: e.toString());
+    } finally {
+      // TFullScreenLoader.stopLoading();
     }
   }
 
@@ -130,9 +135,9 @@ class UserController extends GetxController {
     }
   }
   void uploadUserProfilePicture() async{
-    try {
-      print(user.value.profilePicture);
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70, maxHeight: 512,maxWidth: 512);
+    try{
+    TFullScreenLoader.openLoadingDialog('We are progressing your avatar...', TImages.loadingAnimation);
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70, maxHeight: 512,maxWidth: 512);
       if (image != null) {
         imageUploading.value = true;
         final imageUrl = await userRepository.uploadImage("Users/Images/Profile", image);
@@ -146,6 +151,7 @@ class UserController extends GetxController {
       TLoaders.warningSnackBar(title: 'Oh Snap!', message: e.toString());
     } finally {
       imageUploading.value = false;
+      TFullScreenLoader.stopLoading();
     }
   }
 }

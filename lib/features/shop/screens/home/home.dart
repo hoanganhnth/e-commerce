@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -33,33 +34,33 @@ class HomeScreen extends StatelessWidget {
           children: [
             const TPrimaryHeaderContainer(
                 child: Column(
-                  children: [
-                    THomeAppBar(),
-                    SizedBox(
-                      height: TSizes.spaceBtwSections,
-                    ),
-                    TSearchContainer(
-                      text: "Search in store",
-                    ),
-                    SizedBox(
-                      height: TSizes.spaceBtwSections,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: TSizes.defaultSpace),
-                      child: Column(
-                        children: [
-                          TSectionHeading(
-                            title: 'Popular Categories',
-                            showActionButton: false,
-                            textColor: Colors.white,
-                          ),
-                          SizedBox(
-                            height: TSizes.spaceBtwItems,
-                          ),
-                          THomeCategory(),
-                        ],
+              children: [
+                THomeAppBar(),
+                SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                TSearchContainer(
+                  text: "Search in store",
+                ),
+                SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: TSizes.defaultSpace),
+                  child: Column(
+                    children: [
+                      TSectionHeading(
+                        title: 'Popular Categories',
+                        showActionButton: false,
+                        textColor: Colors.white,
                       ),
-                    ),
+                      SizedBox(
+                        height: TSizes.spaceBtwItems,
+                      ),
+                      THomeCategory(),
+                    ],
+                  ),
+                ),
                 SizedBox(
                   height: TSizes.spaceBtwSections,
                 )
@@ -72,34 +73,44 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   // slider
-                  const TPromoSlider(
-                  ),
+                  const TPromoSlider(),
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
 
                   TSectionHeading(
                     title: 'Popular Products',
-                    onPressed: () => Get.to(() => const TAllProducts()),
+                    onPressed: () => Get.to(() => TAllProducts(
+                          title: 'Popular Products',
+                          query: FirebaseFirestore.instance
+                              .collection('Products')
+                              .where('IsFeatured', isEqualTo: true)
+                              .limit(6),
+                      futureMethod: controller.fetchAllFeaturedProducts(),
+                        ),),
                   ),
                   const SizedBox(
                     height: TSizes.spaceBtwItems,
                   ),
-                  
-                  
+
                   Obx(() {
-                    if (controller.isLoading.value) return const TVerticalProductShimmer();
+                    if (controller.isLoading.value)
+                      return const TVerticalProductShimmer();
 
                     if (controller.featuredProducts.isEmpty) {
-                      return Center(child: Text('No Data Found', style: Theme.of(context).textTheme.bodyMedium,),);
+                      return Center(
+                        child: Text(
+                          'No Data Found',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      );
                     }
-                    return  TGridLayout(
+                    return TGridLayout(
                       itemCount: controller.featuredProducts.length,
-                      itemBuilder: (_, index) => TProductCardVertical(productModel: controller.featuredProducts[index]),
+                      itemBuilder: (_, index) => TProductCardVertical(
+                          productModel: controller.featuredProducts[index]),
                     );
-                  }
-
-                  )
+                  })
                 ],
               ),
             ),

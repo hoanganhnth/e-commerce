@@ -4,6 +4,7 @@ import 'package:t_store/features/shop/models/product_variation_model.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 
 import '../../features/shop/models/banner_model.dart';
+import '../../features/shop/models/brand_category_model.dart';
 import '../../features/shop/models/category_model.dart';
 import '../../features/shop/models/product_model.dart';
 import '../../routes/routes.dart';
@@ -239,5 +240,30 @@ class TDummyData {
 
         ],
         productType: 'ProductType.variable'),
+  ];
+
+  static final List<BrandModel> brands = [
+    BrandModel(id: '1', image: TImages.nikeLogo, name: 'Nike', productsCount: 265, isFeatured: true),
+    BrandModel(id: '6', image: TImages.zaraLogo, name: 'ZARA', productsCount: 12, isFeatured: true),
+    BrandModel(id: '2', name: 'Jordan', image: TImages.jordanLogo, productsCount: 12, isFeatured: true),
+    BrandModel(id: '3', name: 'Puma', image: TImages.pumaLogo, productsCount: 12, isFeatured: true),
+    BrandModel(id: '4', name: 'Adidas', image: TImages.adidasLogo, productsCount: 12, isFeatured: false),
+    BrandModel(id: '5', name: 'Apple', image: TImages.appleLogo, productsCount: 12, isFeatured: false),
+    BrandModel(id: '7', name: 'Kenwood', image: TImages.kenwoodLogo, productsCount: 12, isFeatured: false),
+    BrandModel(id: '8', name: 'HermanMiller', image: TImages.hermanMillerLogo, productsCount: 12, isFeatured: false),
+    BrandModel(id: '9', name: 'Ikea', image: TImages.ikeaLogo, productsCount: 12, isFeatured: false),
+    BrandModel(id: '10', name: 'Acer', image: TImages.acerlogo, productsCount: 12, isFeatured: false),
+
+  ];
+
+  static final List<BrandCategoryModel> brandCategory = [
+    BrandCategoryModel(brandId: '1', categoryId: '1'),
+    BrandCategoryModel(brandId: '6', categoryId: '1'),
+    BrandCategoryModel(brandId: '6', categoryId: '2'),
+    BrandCategoryModel(brandId: '6', categoryId: '3'),
+    BrandCategoryModel(brandId: '1', categoryId: '4'),
+    BrandCategoryModel(brandId: '6', categoryId: '5'),
+    BrandCategoryModel(brandId: '1', categoryId: '6'),
+    BrandCategoryModel(brandId: '6', categoryId: '7'),
   ];
 }

@@ -5,6 +5,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:t_store/commom/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:t_store/commom/widgets/icons/t_brand_title_text_with_verified_icon.dart';
 import 'package:t_store/commom/widgets/images/t_rounded_image.dart';
+import 'package:t_store/commom/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:t_store/commom/widgets/texts/product_price_text.dart';
 import 'package:t_store/commom/widgets/texts/product_title_text.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
@@ -59,10 +60,7 @@ class TProductCardHorizontal extends StatelessWidget {
               Positioned(
                 top: 0,
                 right: 0,
-                child: const TCircleIcon(
-                  icon: Iconsax.heart5,
-                  color: Colors.red,
-                ),
+                child: TFavouriteIcon(productId: '',)
               ),
             ]),
           ),

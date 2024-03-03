@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/commom/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:t_store/commom/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:t_store/features/shop/controllers/product/product_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/features/shop/screens/product_detail/product_detail.dart';
@@ -83,13 +84,10 @@ class TProductCardVertical extends StatelessWidget {
                   ),
 
                   //icon heart
-                  const Positioned(
+                  Positioned(
                     top: 0,
                     right: 0,
-                    child: TCircleIcon(
-                      icon: Iconsax.heart5,
-                      color: Colors.red,
-                    ),
+                    child: TFavouriteIcon(productId: productModel.id,)
                   )
                 ],
               ),
@@ -125,27 +123,31 @@ class TProductCardVertical extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(children: [
-                  if (productModel.productType ==
-                          ProductType.single.toString() &&
-                      productModel.salePrice > 0)
+                Flexible(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                    if (productModel.productType ==
+                            ProductType.single.toString() &&
+                        productModel.salePrice > 0)
+                      Padding(
+                        padding: const EdgeInsets.only(left: TSizes.sm),
+                        child: Text(
+                          productModel.price.toString(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium!
+                              .apply(decoration: TextDecoration.lineThrough),
+                        ),
+                      ),
                     Padding(
                       padding: const EdgeInsets.only(left: TSizes.sm),
-                      child: Text(
-                        productModel.price.toString(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium!
-                            .apply(decoration: TextDecoration.lineThrough),
+                      child: TProductPriceText(
+                        price: controller.getProductPrice(productModel),
                       ),
                     ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: TSizes.sm),
-                    child: TProductPriceText(
-                      price: controller.getProductPrice(productModel),
-                    ),
-                  ),
-                ]),
+                  ]),
+                ),
                 Container(
                   decoration: const BoxDecoration(
                       color: TColors.dark,

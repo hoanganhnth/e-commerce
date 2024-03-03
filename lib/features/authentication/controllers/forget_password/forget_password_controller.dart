@@ -4,6 +4,7 @@ import 'package:t_store/data/repositories/authentication/authentication_reposito
 import 'package:t_store/features/authentication/screens/password_configuration/reset_password.dart';
 
 import '../../../../commom/widgets/loaders/loaders.dart';
+import '../../../../utils/popups/full_screen_loader.dart';
 
 class ForgetPasswordController extends GetxController{
   static ForgetPasswordController get instance => Get.find();
@@ -27,7 +28,6 @@ class ForgetPasswordController extends GetxController{
 
   resendPasswordResetEmail() async {
     try {
-
       await AuthenticationRepository.instance.sendPasswordResetEmail(email.text.toString());
       TLoaders.successSnackBar(title: 'Email sent', message: 'Email Link is sent  to reset your password');
     } catch(e) {

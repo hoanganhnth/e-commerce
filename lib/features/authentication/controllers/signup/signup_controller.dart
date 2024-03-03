@@ -25,10 +25,9 @@ class SignupController extends GetxController {
 
   Future<void> signup() async {
     try {
-      // TFullScreenLoader.openLoadingDialog('We are progressing your information...', TImages.staticSuccessIllustration);
       if (!signupFormKey.currentState!.validate()) {
         TLoaders.warningSnackBar(title: 'Oh Snap!', message: 'Please enter the field');
-        return ;
+        return;
       }
       if (!privacyPolicy.value) {
         TLoaders.warningSnackBar(
@@ -37,6 +36,7 @@ class SignupController extends GetxController {
                 ' In order to create account, you must have to read and accept Privacy Policy and Terms of use');
         return;
       }
+      TFullScreenLoader.openLoadingDialog('We are progressing your information...', TImages.loadingAnimation);
       final userCredential = await AuthenticationRepository.instance
           .registerWithEmailAndPassword(
               email.text.trim(), password.text.trim());
@@ -55,6 +55,8 @@ class SignupController extends GetxController {
       Get.to(() => VerifyEmailScreen(email: email.text,));
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
-    } finally {}
+    } finally {
+      // TFullScreenLoader.stopLoading();
+    }
   }
 }
