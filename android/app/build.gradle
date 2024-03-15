@@ -27,6 +27,14 @@ android {
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
+    signingConfigs {
+        config {
+            keyPassword "1832003"
+            storeFile file("E:/projectupload-keystore.jks")
+            storePassword "1832003"
+            keyAlias "key0"
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

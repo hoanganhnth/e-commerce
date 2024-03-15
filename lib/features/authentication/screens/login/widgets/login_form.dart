@@ -6,7 +6,6 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/features/authentication/screens/password_configuration/forget_password.dart';
 import 'package:t_store/features/authentication/screens/signup/signup.dart';
-import 'package:t_store/navigation_menu.dart';
 import 'package:t_store/utils/validators/validation.dart';
 
 import '../../../../../utils/constants/sizes.dart';
@@ -44,7 +43,7 @@ class TLoginForm extends StatelessWidget {
                   obscureText: controller.hidePassword.value,
                   validator: (value) => TValidator.validateEmptyText('Password',value ),
                   decoration: InputDecoration(
-                      prefixIcon: Icon(Iconsax.direct_right),
+                      prefixIcon: const Icon(Iconsax.direct_right),
                       labelText: TTexts.password,
                       suffixIcon: IconButton(
                           onPressed: () => controller.hidePassword.value =

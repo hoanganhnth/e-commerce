@@ -25,4 +25,7 @@ class TFullScreenLoader {
             ))
     );
   }
+  static stopLoading() {
+    Navigator.of(Get.overlayContext!).pop();
+  }
 }

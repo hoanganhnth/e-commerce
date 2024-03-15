@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/commom/widgets/loaders/loaders.dart';
-import 'package:t_store/data/model/user_model.dart';
+import 'package:t_store/features/personalization/models/user_model.dart';
 import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:t_store/data/repositories/user/user_repository.dart';
 import 'package:t_store/features/authentication/screens/signup/verify_email.dart';
@@ -25,10 +25,9 @@ class SignupController extends GetxController {
 
   Future<void> signup() async {
     try {
-      // TFullScreenLoader.openLoadingDialog('We are progressing your information...', TImages.staticSuccessIllustration);
       if (!signupFormKey.currentState!.validate()) {
         TLoaders.warningSnackBar(title: 'Oh Snap!', message: 'Please enter the field');
-        return ;
+        return;
       }
       if (!privacyPolicy.value) {
         TLoaders.warningSnackBar(
@@ -37,6 +36,7 @@ class SignupController extends GetxController {
                 ' In order to create account, you must have to read and accept Privacy Policy and Terms of use');
         return;
       }
+      TFullScreenLoader.openLoadingDialog('We are progressing your information...', TImages.loadingAnimation);
       final userCredential = await AuthenticationRepository.instance
           .registerWithEmailAndPassword(
               email.text.trim(), password.text.trim());
@@ -55,6 +55,8 @@ class SignupController extends GetxController {
       Get.to(() => VerifyEmailScreen(email: email.text,));
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
-    } finally {}
+    } finally {
+      // TFullScreenLoader.stopLoading();
+    }
   }
 }

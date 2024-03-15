@@ -4,6 +4,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:t_store/commom/widgets/loaders/loaders.dart';
 import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:t_store/features/personalization/controllers/user_controller.dart';
+import 'package:t_store/utils/popups/full_screen_loader.dart';
+
+import '../../../../utils/constants/image_strings.dart';
 
 class LoginController extends GetxController{
   static LoginController get instance => Get.find();
@@ -23,6 +26,7 @@ class LoginController extends GetxController{
         TLoaders.warningSnackBar(title: 'Oh Snap!', message: 'Please enter the field');
         return ;
       }
+      TFullScreenLoader.openLoadingDialog('We are progressing your information...', TImages.loadingAnimation);
       if (rememberMe.value) {
         localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
         localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
@@ -32,6 +36,8 @@ class LoginController extends GetxController{
       AuthenticationRepository.instance.screenRedirect();
     } catch(e) {
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+    } finally {
+      TFullScreenLoader.stopLoading();
     }
   }
 

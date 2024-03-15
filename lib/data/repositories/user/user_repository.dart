@@ -13,7 +13,7 @@ import '../../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/format_exceptions.dart';
 import '../../../utils/exceptions/platform_exceptions.dart';
-import '../../model/user_model.dart';
+import '../../../features/personalization/models/user_model.dart';
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
   final FirebaseFirestore _db = FirebaseFirestore.instance;

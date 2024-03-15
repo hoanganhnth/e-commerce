@@ -9,8 +9,11 @@ import '../../icons/t_circular_icon.dart';
 
 class TProductQuantityWithAddRemoveButton extends StatelessWidget {
   const TProductQuantityWithAddRemoveButton({
-    super.key,
+    super.key, this.add, this.remove, required this.quantity,
   });
+
+  final VoidCallback? add, remove;
+  final int quantity;
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +29,18 @@ class TProductQuantityWithAddRemoveButton extends StatelessWidget {
         backgroundColor:  THelperFunctions.isDarkMode(context)
             ? TColors.darkGrey
             : TColors.light,
+        onPressed: remove,
       ),
       const SizedBox(width: TSizes.spaceBtwItems,),
-      Text('2', style: Theme.of(context).textTheme.titleSmall,),                      const SizedBox(width: TSizes.spaceBtwItems,),
+      Text(quantity.toString(), style: Theme.of(context).textTheme.titleSmall,),                      const SizedBox(width: TSizes.spaceBtwItems,),
       TCircleIcon(
           icon: Iconsax.add,
           width: 32,
           height: 32,
           size: TSizes.md,
           color: TColors.white,
-          backgroundColor:  TColors.primary
+          backgroundColor:  TColors.primary,
+        onPressed: add,
       ),
     ],);
   }

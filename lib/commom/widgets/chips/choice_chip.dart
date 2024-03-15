@@ -22,7 +22,7 @@ class TChoiceChip extends StatelessWidget {
     final isColor = THelperFunctions.getColor(text)!= null;
     return Theme(
       data: Theme.of(context)..copyWith(canvasColor: Colors.transparent),
-      child: ChoiceChip(
+        child: ChoiceChip(
         label: isColor
             ? const SizedBox()
             : Text(text),

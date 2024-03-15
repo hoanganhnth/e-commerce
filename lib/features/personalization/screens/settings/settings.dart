@@ -60,7 +60,7 @@ class SettingScreen extends StatelessWidget {
                 TSettingProfileTile(
                     title: 'My Addresses',
                     subTitle: 'Set shopping delivery address',
-                    icon: Iconsax.safe_home, onTap: () => Get.to(() => const UserAddressScreen()),),
+                    icon: Iconsax.safe_home, onTap: () => Get.to(() => UserAddressScreen()),),
                 TSettingProfileTile(
                     title: 'My Cart',
                     subTitle: 'Add, remove products and move to checkout',

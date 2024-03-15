@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../../utils/constants/colors.dart';
 
 class TRatingProgressIndicator extends StatelessWidget {
-  const TRatingProgressIndicator({
+  const   TRatingProgressIndicator({
     super.key, required this.text, required this.value,
   });
 

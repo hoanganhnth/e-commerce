@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/commom/widgets/appbar/appbar.dart';
 import 'package:t_store/commom/widgets/images/t_circular_image.dart';
-import 'package:t_store/commom/widgets/loaders/shimmer.dart';
+import 'package:t_store/commom/widgets/shimmers/shimmer.dart';
 import 'package:t_store/commom/widgets/texts/section_heading.dart';
 import 'package:t_store/features/personalization/controllers/user_controller.dart';
 import 'package:t_store/features/personalization/screens/profile/widgets/change_name.dart';

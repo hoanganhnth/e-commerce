@@ -7,8 +7,11 @@ import 'package:t_store/commom/widgets/appbar/tabbar.dart';
 import 'package:t_store/commom/widgets/custom_shapes/containers/search_container.dart';
 import 'package:t_store/commom/widgets/layout/grid_layout.dart';
 import 'package:t_store/commom/widgets/products/cart/cart_menu_icon.dart';
+import 'package:t_store/commom/widgets/shimmers/brand_shimmer.dart';
 import 'package:t_store/commom/widgets/texts/section_heading.dart';
 import 'package:t_store/commom/widgets/brands/brand_card.dart';
+import 'package:t_store/features/shop/controllers/brand_controller.dart';
+import 'package:t_store/features/shop/controllers/category_controller.dart';
 import 'package:t_store/features/shop/screens/brand/all_brands.dart';
 import 'package:t_store/features/shop/screens/store/widgets/category_tab.dart';
 
@@ -16,15 +19,18 @@ import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
 import '../../../../utils/constants/colors.dart';
+import '../brand/brand_products.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final dark  = THelperFunctions.isDarkMode(context);
+    final brandController = Get.put(BrandController());
+    final categories = CategoryController.instance.featuredCategories;
+    final dark = THelperFunctions.isDarkMode(context);
     return DefaultTabController(
-      length: 5,
+      length: categories.length,
       child: Scaffold(
         appBar: TAppBar(
           title: Text(
@@ -70,53 +76,53 @@ class StoreScreen extends StatelessWidget {
                       const SizedBox(
                         height: TSizes.spaceBtwItems / 1.5,
                       ),
-                      TGridLayout(
-                        itemCount: 4,
-                        mainAxisExtent: 80,
-                        itemBuilder: (BuildContext, int) {
-                          return const TBrandCard(
-                            showBorder: true,
+                      Obx(() {
+                        if (brandController.isLoading.value) {
+                          return const TBrandShimmer();
+                        }
+                        if (brandController.featuredBrands.isEmpty) {
+                          return Center(
+                            child: Text(
+                              'No Data Found',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .apply(color: TColors.white),
+                            ),
                           );
-                        },
-                      )
+                        }
+                        return TGridLayout(
+                          itemCount: brandController.featuredBrands.length,
+                          mainAxisExtent: 80,
+                          itemBuilder: (_, index) {
+                            final brand = brandController.featuredBrands[index];
+                            return TBrandCard(
+                                showBorder: true,
+                                brand: brand,
+                                onTap: () =>
+                                    Get.to(() => BrandProductScreen(brand: brand,)));
+                          },
+                        );
+                      })
                     ],
                   ),
                 ),
                 // Tabs
-                bottom: const TTaBar(
-                  tabs: [
-                    Tab(
-                      child: Text('Sport'),
-                    ),
-                    Tab(
-                      child: Text('Furniture'),
-                    ),
-                    Tab(
-                      child: Text('Electronics'),
-                    ),
-                    Tab(
-                      child: Text('Clothes'),
-                    ),
-                    Tab(
-                      child: Text('Cosmetics'),
-                    ),
-                  ],
+                bottom: TTaBar(
+                  tabs: categories
+                      .map((category) => Tab(
+                            child: Text(category.name),
+                          ))
+                      .toList(),
                 ),
               )
             ];
           },
-          body: const TabBarView(
-            children: [
-              TCategoryTab(),
-              TCategoryTab(),
-              TCategoryTab(),
-              TCategoryTab(),
-              TCategoryTab(),
-            ],
+          body: TabBarView(
+            children: categories.map((element) => TCategoryTab(category: categories.first,)).toList(),
           ),
         ),
       ),
     );
   }
 }
-
