@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:t_store/commom/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:t_store/commom/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:t_store/features/shop/controllers/product/product_controller.dart';
@@ -12,15 +11,14 @@ import 'package:t_store/features/shop/screens/product_detail/product_detail.dart
 import 'package:t_store/utils/constants/enums.dart';
 
 import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
 import '../../../styles/shadows.dart';
 import '../../icons/t_brand_title_text_with_verified_icon.dart';
-import '../../icons/t_circular_icon.dart';
 import '../../images/t_rounded_image.dart';
 import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
+import 'add_to_cart_button.dart';
 
 class TProductCardVertical extends StatelessWidget {
   const TProductCardVertical({
@@ -148,21 +146,8 @@ class TProductCardVertical extends StatelessWidget {
                     ),
                   ]),
                 ),
-                Container(
-                  decoration: const BoxDecoration(
-                      color: TColors.dark,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(TSizes.cardRadiusMd),
-                          bottomRight:
-                              Radius.circular(TSizes.productImageRadius))),
-                  child: const SizedBox(
-                      width: TSizes.iconLg * 1.2,
-                      height: TSizes.iconLg * 1.2,
-                      child: Icon(
-                        Iconsax.add,
-                        color: Colors.white,
-                      )),
-                )
+
+                ProductCartAddToCartButton(product: productModel,)
               ],
             )
           ],
@@ -171,3 +156,4 @@ class TProductCardVertical extends StatelessWidget {
     );
   }
 }
+

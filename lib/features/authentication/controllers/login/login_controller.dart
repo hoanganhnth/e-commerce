@@ -37,7 +37,7 @@ class LoginController extends GetxController{
     } catch(e) {
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     } finally {
-      // TFullScreenLoader.stopLoading();
+      TFullScreenLoader.stopLoading();
     }
   }
 

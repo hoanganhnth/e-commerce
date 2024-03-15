@@ -20,10 +20,13 @@ import 'package:get_storage/get_storage.dart';
   // Generic method to save data
   Future<void> saveData<T>(String key, T value) async {
     await _storage.write(key, value);
+    print(readData(key));
+
   }
 
   // Generic method to read data
   T? readData<T>(String key) {
+      print(_storage.read(key));
     return _storage.read<T>(key);
   }
 

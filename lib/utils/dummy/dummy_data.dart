@@ -21,7 +21,7 @@ class TDummyData {
     CategoryModel(id: '14', name: 'Jewelery', image: TImages.jeweleryIcon, isFeatured: true),
 
     CategoryModel(id: '8', name: 'Sport shoes', parentId:'1',image: TImages.sportIcon, isFeatured: false),
-    CategoryModel(id: '9', name: 'Track suits', parentId:'1', image: TImages.sportIcon, isFeatured: false),
+    CategoryModel(id: '9', name: 'Track suits', parentId:'3', image: TImages.sportIcon, isFeatured: false),
     CategoryModel(id: '10', name: 'Sports Equipment', parentId:'1', image: TImages.jeweleryIcon, isFeatured: false),
     CategoryModel(id: '11', name: 'Bedroom Furniture', parentId:'5', image: TImages.furnitureIcon, isFeatured: false),
     CategoryModel(id: '12', name: 'Kitchen Furniture', parentId:'5', image: TImages.furnitureIcon, isFeatured: false),
@@ -55,7 +55,7 @@ class TDummyData {
         images: [TImages.productImage1, TImages.productImage23, TImages.productImage21, TImages.productImage9],
         salePrice: 30,
         sku: 'ABR4568',
-        categoryId: '1',
+        categoryId: '10',
         productAttributes: [
           ProductAttributeModel(name: 'Color', values: ['Green', 'Black', 'Red']),
           ProductAttributeModel(name: 'Size', values: ['EU 30', 'EU 32', 'EU 34']),
@@ -114,7 +114,7 @@ class TDummyData {
         images: [TImages.productImage68, TImages.productImage69, TImages.productImage5],
         salePrice: 30,
         sku: 'ABR4568',
-        categoryId: '16',
+        categoryId: '8',
         productAttributes: [
           ProductAttributeModel(name: 'Color', values: ['Green', 'Blue', 'Red']),
           ProductAttributeModel(name: 'Size', values: ['EU 32', 'EU 34']),
@@ -133,7 +133,7 @@ class TDummyData {
         images: [TImages.productImage60, TImages.productImage61, TImages.productImage62, TImages.productImage63],
         salePrice: 30,
         sku: 'ABR4568',
-        categoryId: '16',
+        categoryId: '10',
         productAttributes: [
           ProductAttributeModel(name: 'Color', values: ['Green','Black','Red', 'Blue']),
           ProductAttributeModel(name: 'Size', values: ['EU 30', 'EU 32', 'EU 34']),
@@ -266,4 +266,6 @@ class TDummyData {
     BrandCategoryModel(brandId: '1', categoryId: '6'),
     BrandCategoryModel(brandId: '6', categoryId: '7'),
   ];
+
+
 }

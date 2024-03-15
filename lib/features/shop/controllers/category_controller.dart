@@ -46,4 +46,13 @@ class CategoryController extends GetxController {
     }
   }
 
+  Future<List<CategoryModel>> getSubCategory(String categoryId) async{
+    try {
+      final subCategory = await _categoryRepository.getSubCategory(categoryId);
+      return subCategory;
+    } catch(e){
+      TLoaders.warningSnackBar(title: 'Oh Snap!', message: e.toString());
+      return [];
+    }
+  }
 }

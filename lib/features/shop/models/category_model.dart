@@ -16,7 +16,7 @@ class CategoryModel {
 });
   static CategoryModel empty() => CategoryModel(id: '', name: '', image: '', isFeatured: false);
 
-  Map<String, dynamic> tojson() {
+  Map<String, dynamic> toJson() {
     return {
       'Name': name,
       'Image': image,

@@ -7,7 +7,6 @@ import 'package:t_store/features/shop/controllers/category_controller.dart';
 
 import '../../../../../commom/widgets/image_text_widgets/vertical_image_text.dart';
 import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
 
 class THomeCategory extends StatelessWidget {
@@ -35,7 +34,7 @@ class THomeCategory extends StatelessWidget {
               isNetworkImage: false,
               image: category.image,
               title: category.name,
-              onTap: () => Get.to(() => const TSubCategoriesScreen()),
+              onTap: () => Get.to(() => TSubCategoriesScreen(category: category,)),
               backgroundColor: THelperFunctions.isDarkMode(context) ? TColors.dark : TColors.white,
             );
           },
